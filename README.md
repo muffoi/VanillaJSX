@@ -31,6 +31,10 @@ npm run build:test
 ```
 
 ## Using in your projects
+Download following files from [releases](https://github.com/muffoi/VanillaJSX/releases):
+- `jsx-runtime.js`,
+- `jsx.d.ts`
+
 Add the following to your `tsconfig.json`,
 
 ```json
@@ -50,4 +54,4 @@ import { JSXRuntime } from "./jsx-runtime.js";
 window/* or global */.JSXRuntime = JSXRuntime;
 ```
 
-and include all `.d.ts` typings from this repo in your `tsconfig.json`.
+and include `jsx.d.ts` in your `tsconfig.json`.
