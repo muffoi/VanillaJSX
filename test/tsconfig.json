@@ -9,5 +9,5 @@
         "jsxFragmentFactory": "JSXRuntime.fragmentFactory"
     },
 
-    "include": [ "./*.tsx", "../types/*.d.ts" ]
+    "include": [ "./*.tsx", "../jsx.d.ts" ]
 }

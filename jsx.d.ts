@@ -82,4 +82,4 @@ type KeysMatching<I extends object, T> = {
     [K in keyof I]: I[K] extends T ? K : never
 }[keyof I];
 
-declare const JSXRuntime: typeof import("../jsx-runtime").JSXRuntime;
+declare const JSXRuntime: typeof import("./jsx-runtime").JSXRuntime;
