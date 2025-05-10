@@ -24,7 +24,7 @@ declare namespace JSX {
         keyof IntrinsicElementBase<K>
     > & IntrinsicElementBase<K>;
 
-    type IntrinsicElementAttributeMap<K> = {
+    type IntrinsicElementAttributeMap<K extends TagName> = {
         [A in Exclude<
             KeysMatching<HTMLElementTagNameMap[K], string>,
             `${"inner" | "outer"}${"HTML" | "Text"}` | `access${string}`
@@ -67,7 +67,7 @@ declare namespace JSX {
     type HTMLAppendableList = HTMLAppendable[];
 
     /** First argument of {@link JSX.Component} functions */
-    interface Properties<P extends Record<string, any> = {}> extends P {
+    type Properties<P extends Record<string, any> = {}> = P & {
         children: ChildArray;
     };
 
@@ -81,5 +81,3 @@ declare namespace JSX {
 type KeysMatching<I extends object, T> = {
     [K in keyof I]: I[K] extends T ? K : never
 }[keyof I];
-
-declare const JSXRuntime: typeof import("./jsx-runtime").JSXRuntime;
