@@ -1,0 +1,10 @@
+{
+    "name": "vanilla-jsx",
+    "scripts": {
+        "build": "tsc",
+        "build:test": "tsc -p ./test/tsconfig.json"
+    },
+    "devDependencies": {
+        "typescript": "^5.8.3"
+    }
+}
