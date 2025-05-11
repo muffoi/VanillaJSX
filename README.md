@@ -46,6 +46,8 @@ and include `jsx.d.ts` in your `tsconfig.json`.
 - `JSXRuntime.factory(tagName, properties [, children])` - JSX factory function
 - `JSXRuntime.fragment({ children })` - Component function for JSX fragments
 - **!DEPRECATED!** `JSXRuntime.fragmentFactory({ children })` - Old name for `JSXRuntime.fragment`
+- `JSXRuntime.buildChildren(children)` - Utility function for transforming `props.children` in components to a flat array that can be appended directly by `HTMLElement.append`
+- `JSXRuntime.flatten(children)` - Utility function for flattening `props.children` in components
 
 ## Rendering of various data types
 VanillaJSX runtime allows passing any data as children to elements in JSX. Here's how:
