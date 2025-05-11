@@ -22,15 +22,31 @@ export const JSXRuntime = {
             element.setAttribute(key, props[key]);
         }
 
-        element.append(...buildChildren(children));
+        element.append(...this.buildChildren(children));
 
         return element;
     },
 
     fragmentFactory({ children }: JSX.Properties): DocumentFragment {
         const fragment = document.createDocumentFragment();
-        fragment.append(...buildChildren(children));
+        fragment.append(...this.buildChildren(children));
         return fragment;
+    },
+
+    buildChildren(children: JSX.RawChildren): JSX.HTMLAppendableList {
+       const flatChildren = this.flatten(children);
+
+       return flatChildren.map(child => (
+           child instanceof Node ? child : 
+           typeof child === "boolean" ? undefined :
+           child === null ? undefined :
+           typeof child === "undefined" ? undefined :
+           child.toString()
+       )).filter(node => typeof node !== "undefined");
+    },
+
+    flatten(children: JSX.RawChildren): JSX.ChildArray {
+        return (children instanceof Array ? children : [children]).flat(Infinity);
     }
 }
 
@@ -52,17 +68,6 @@ const PropPlugins: JSXPropertyPlugin[] = [
         },
     }
 ]
-
-function buildChildren(children: JSX.RawChildren): JSX.HTMLAppendableList {
-    const flatChildren = (children instanceof Array ? children : [children]).flat(Infinity);
-
-    return flatChildren.map(child => (
-        child instanceof Node ? child : 
-        typeof child === "boolean" ? undefined :
-        child === null ? undefined :
-        child.toString()
-    )).filter(node => typeof node !== "undefined");
-}
 
 declare interface JSXPropertyPlugin {
     filter: (key: string) => boolean;
