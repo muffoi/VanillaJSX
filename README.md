@@ -4,6 +4,7 @@ JSX runtime for vanilla (non-react) javascript environments
 
 ## Features
 - Function components support (`({...params, children}) => JSX`)
+- JSX fragment support with `<></>` syntax
 - Attach event listeners with `on:<EVENT>` attributes (actually calls `element.addEventListener` under the hood)
 - Pass inline CSS styles as objects (`<div style={{ backgroundColor: "#f00" }}>Hello, world!</div>`)
 - Set `class` attribute with `className` as string (array classes not supported)
@@ -25,7 +26,7 @@ Add the following to your `tsconfig.json`,
   "compilerOptions": {
     "jsx": "react",
     "jsxFactory": "JSXRuntime.factory",
-    "jsxFragmentFactory": "JSXRuntime.fragmentFactory"
+    "jsxFragmentFactory": "JSXRuntime.fragment"
   }
 }
 ```
@@ -43,7 +44,8 @@ and include `jsx.d.ts` in your `tsconfig.json`.
 
 ## Exports of `jsx-runtime.js`
 - `JSXRuntime.factory(tagName, properties [, children])` - JSX factory function
-- `JSXRuntime.fragmentFactory({ children })` - Component function for JSX fragments
+- `JSXRuntime.fragment({ children })` - Component function for JSX fragments
+- **!DEPRECATED!** `JSXRuntime.fragmentFactory({ children })` - Old name for `JSXRuntime.fragment`
 
 ## Rendering of various data types
 VanillaJSX runtime allows passing any data as children to elements in JSX. Here's how:
