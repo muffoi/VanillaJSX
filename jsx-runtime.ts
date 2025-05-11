@@ -27,10 +27,15 @@ export const JSXRuntime = {
         return element;
     },
 
-    fragmentFactory({ children }: JSX.Properties): DocumentFragment {
+    fragment({ children }: JSX.Properties): DocumentFragment {
         const fragment = document.createDocumentFragment();
         fragment.append(...JSXRuntime.buildChildren(children));
         return fragment;
+    },
+
+    fragmentFactory(props: JSX.Properties): DocumentFragment {
+        console.warn("DEPRECATED: 'JSXRuntime.fragmentFactory' is deprecated. Use 'JSXRuntime.fragment' instead.");
+        return JSXRuntime.fragment(props);
     },
 
     buildChildren(children: JSX.RawChildren): JSX.HTMLAppendableList {
