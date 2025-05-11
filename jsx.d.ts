@@ -39,6 +39,12 @@ declare namespace JSX {
     interface Component<P extends Record<string, any> = {}> {
         (props: Properties<P>): Element;
     }
+    
+    /** HTML Factory processed children type */
+    type HTMLAppendable = JSX.Element | DocumentFragment | string;
+
+    /** Array of {@link JSX.HTMLAppendable} */
+    type HTMLAppendableList = HTMLAppendable[];
 
     /** JSX element children type */
     type ChildType = HTMLAppendable | number | boolean;
@@ -51,15 +57,9 @@ declare namespace JSX {
     /** Flattened children array type */
     type ChildArray = ChildType[];
 
-    /** HTML Factory processed children type */
-    type HTMLAppendable = JSX.Element | DocumentFragment | string;
-
-    /** Array of {@link JSX.HTMLAppendable} */
-    type HTMLAppendableList = HTMLAppendable[];
-
     /** First argument of {@link JSX.Component} functions */
     type Properties<P extends Record<string, any> = {}> = P & {
-        children: ChildArray;
+        children: RawChildren;
     };
 
     /** HTML tag name type union */

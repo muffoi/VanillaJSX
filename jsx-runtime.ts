@@ -1,9 +1,7 @@
 export const JSXRuntime = {
     factory(type: string | JSX.Component, props: Record<string, any> | null, ...children: JSX.RawChildren[]): JSX.Element {
-        const flatChildren = children.flat(Infinity) as JSX.ChildArray;
-
         if(typeof type !== "string") {
-            return type({ children: flatChildren, ...props });
+            return type({ children, ...props });
         }
 
         const element = document.createElement(type);
@@ -24,7 +22,7 @@ export const JSXRuntime = {
             element.setAttribute(key, props[key]);
         }
 
-        element.append(...buildChildren(flatChildren));
+        element.append(...buildChildren(children));
 
         return element;
     },
@@ -55,8 +53,10 @@ const PropPlugins: JSXPropertyPlugin[] = [
     }
 ]
 
-function buildChildren(children: JSX.ChildArray): JSX.HTMLAppendableList {
-    return children.map(child => (
+function buildChildren(children: JSX.RawChildren): JSX.HTMLAppendableList {
+    const flatChildren = (children instanceof Array ? children : [children]).flat(Infinity);
+
+    return flatChildren.map(child => (
         child instanceof Node ? child : 
         typeof child === "boolean" ? undefined :
         child.toString()
