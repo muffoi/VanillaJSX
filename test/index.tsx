@@ -15,10 +15,12 @@ const App: JSX.Component<{ show?: boolean }> = ({ children, show = true }) => (
 );
 
 const t1 = performance.now();
-for(let i = 0;i<100;i++)document.getElementById("app")!.appendChild(<App show={!(i % 2)}>{i}<br/></App>);
+for (let i = 0; i < 1000; i++) {
+    document.getElementById("app")!.appendChild(<App show={!(i % 2)}>{i}</App>);
+}
 const t2 = performance.now();
 
-console.log(`Loading took avg ${Math.round(t2 - t1) / 100}ms`);
+console.log(`Loading took avg ${Math.round(t2 - t1) / 1000}ms`);
 
 document.getElementById("app")!.innerHTML = "";
-document.getElementById("app")!.appendChild(<App show={!Math.round(Math.random())}><br/></App>);
+document.getElementById("app")!.appendChild(<App show={!Math.round(Math.random())}>0<br/></App>);
