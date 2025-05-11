@@ -8,7 +8,7 @@
 
         "jsx": "react",
         "jsxFactory": "JSXRuntime.factory",
-        "jsxFragmentFactory": "JSXRuntime.fragmentFactory"
+        "jsxFragmentFactory": "JSXRuntime.fragment"
     },
 
     "include": [ "./*.tsx", "../jsx.d.ts" ]

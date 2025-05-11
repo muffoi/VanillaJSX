@@ -19,7 +19,6 @@ for (let i = 0; i < 1000; i++) {
     document.getElementById("app")!.appendChild(<App show={!(i % 2)}>{i}</App>);
 }
 const t2 = performance.now();
-console.clear();
 
 console.log(`Loading took avg ${Math.round(t2 - t1) / 1000}ms`);
 
