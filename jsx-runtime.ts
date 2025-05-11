@@ -22,19 +22,19 @@ export const JSXRuntime = {
             element.setAttribute(key, props[key]);
         }
 
-        element.append(...this.buildChildren(children));
+        element.append(...JSXRuntime.buildChildren(children));
 
         return element;
     },
 
     fragmentFactory({ children }: JSX.Properties): DocumentFragment {
         const fragment = document.createDocumentFragment();
-        fragment.append(...this.buildChildren(children));
+        fragment.append(...JSXRuntime.buildChildren(children));
         return fragment;
     },
 
     buildChildren(children: JSX.RawChildren): JSX.HTMLAppendableList {
-       const flatChildren = this.flatten(children);
+       const flatChildren = JSXRuntime.flatten(children);
 
        return flatChildren.map(child => (
            child instanceof Node ? child : 
