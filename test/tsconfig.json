@@ -4,6 +4,7 @@
         "rootDir": "./",
         "outDir": "./out",
         "declaration": false,
+        "declarationDir": null,
 
         "jsx": "react",
         "jsxFactory": "JSXRuntime.factory",
