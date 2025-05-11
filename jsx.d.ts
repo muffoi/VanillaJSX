@@ -47,7 +47,7 @@ declare namespace JSX {
     type HTMLAppendableList = HTMLAppendable[];
 
     /** JSX element children type */
-    type ChildType = HTMLAppendable | number | boolean;
+    type ChildType = HTMLAppendable | number | boolean | null | undefined;
 
     /**
      * Raw non-flat children array

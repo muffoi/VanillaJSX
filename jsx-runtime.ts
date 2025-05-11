@@ -59,6 +59,7 @@ function buildChildren(children: JSX.RawChildren): JSX.HTMLAppendableList {
     return flatChildren.map(child => (
         child instanceof Node ? child : 
         typeof child === "boolean" ? undefined :
+        child === null ? undefined :
         child.toString()
     )).filter(node => typeof node !== "undefined");
 }
