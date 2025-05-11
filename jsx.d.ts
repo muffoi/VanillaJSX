@@ -6,7 +6,7 @@ declare namespace JSX {
     interface IntrinsicElements extends IntrinsicElementMap { }
     
     interface ElementChildrenAttribute {
-        children: ChildOrNestedArrayOriginal;
+        children: RawChildren;
     }
 
     //#endregion
@@ -45,17 +45,8 @@ declare namespace JSX {
 
     /**
      * Raw non-flat children array
-     * Problematic, produces TS2589 "Type instantiation is excessively deep and possibly infinite." error.
-     * 
-     * Original is available as {@link JSX.ChildOrNestedArrayOriginal}
-     * 
-     * Replaced by `unknown[]` while no better solution is found. See original definition below:
-     * ```ts
-     * type ChildOrNestedArray = ChildType | ChildOrNestedArray[];
-     * ```
      */
-    type ChildOrNestedArray = unknown[];
-    type ChildOrNestedArrayOriginal = ChildType | ChildOrNestedArrayOriginal[];
+    type RawChildren = ChildType | Iterable<RawChildren>;
 
     /** Flattened children array type */
     type ChildArray = ChildType[];

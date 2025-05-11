@@ -1,5 +1,5 @@
 export const JSXRuntime = {
-    factory(type: string | JSX.Component, props: Record<string, any> | null, ...children: JSX.ChildOrNestedArray[]): JSX.Element {
+    factory(type: string | JSX.Component, props: Record<string, any> | null, ...children: JSX.RawChildren[]): JSX.Element {
         const flatChildren = children.flat(Infinity) as JSX.ChildArray;
 
         if(typeof type !== "string") {
